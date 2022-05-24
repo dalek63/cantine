@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import controller.ConSuppEnfant;
 import controller.config;
@@ -18,6 +21,8 @@ import controller.config;
  */
 public class parentinterface extends javax.swing.JFrame {
       String a = login.Id;
+      String date = "";
+      String heure = "";
     /**
      * Creates new form parentinterface
      */
@@ -55,12 +60,41 @@ public class parentinterface extends javax.swing.JFrame {
 
             }
         });
+         
+		try {
+			Connection con = DriverManager.getConnection(config.url, config.user, config.password);
+             String sql = "SELECT LAST_NAME FROM PATIENT WHERE LOGIN='" + a + "'";; 
+
+                        PreparedStatement pst = con.prepareStatement(sql);
+                        
+                        ResultSet rs = pst.executeQuery(sql);
+            if(rs.next()){
+                        String name = rs.getString("LAST_NAME");
+
+             String sql2 = "SELECT * FROM SESSION WHERE PATIENT='" + name + "'";; 
+
+                        PreparedStatement pst2 = con.prepareStatement(sql2);
+                        
+                        
+                        ResultSet rs2 = pst.executeQuery(sql2);
+                    if(rs2.next()){
+                        date = rs2.getString("JOUR_RESERVATION");   
+                        heure = rs2.getString("HEURE");
+                    }
+                        
+            }
+                        
 
       
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("BIENVENUE SUR VOTRE SESSION");
+        jLabel1.setText("BIENVENUE SUR VOTRE SESSION, N'OUBLIEZ  PAS QUE VOUS AVEZ UN RDV LE "+date+" "+heure+" ! ");
 
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N

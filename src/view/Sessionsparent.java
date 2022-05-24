@@ -96,31 +96,29 @@ public class Sessionsparent extends javax.swing.JFrame {
                     PreparedStatement pst3 = con.prepareStatement(sql3);
                     ResultSet rs = pst3.executeQuery(sql3);
                     if (rs.next()) {
-                        int g = rs.getInt("NOMBRE_PLACE");
-                        int s = g - 1;
-                        String sql = "UPDATE cantine.SESSION SET NOMBRE_PLACE=" + s + " where idSESSION=" + cell + "";
-                        String sql2 = "INSERT INTO  cantine.SESSION_has_PATIENT(PATIENT_idPATIENT,SESSION_idSESSION) VALUES("
-                                + a + "," + cell + ")";
+                        int g = rs.getInt("NOMBRE_PLACE");                        int s;
+                        s = g - 1;
+                        String sql = "UPDATE cantine.SESSION SET NOMBRE_PLACE=" + s + " where idSESSION=" + Integer.parseInt(cell) + "";
                         
-                         PreparedStatement pst2 = con.prepareStatement(sql2);
                         PreparedStatement pst = con.prepareStatement(sql);
                         pst.execute(sql);
-                        pst2.execute(sql2);
+                        System.out.println(a);
+                        String sql4 = "SELECT LAST_NAME FROM PATIENT WHERE LOGIN='" + a + "'";; 
 
-                        
-                        String sql4 = "SELECT LAST_NAME FROM PATIENT WHERE LOGIN=" +a+ "";
                         PreparedStatement pst4 = con.prepareStatement(sql4);
+                        {
                         ResultSet rs2 = pst4.executeQuery(sql4);
+                        if (rs2.next()) {
                         String name = rs2.getString("LAST_NAME");
-                        String sql5 = "UPDATE cantine.SESSION SET PATIENT=" + name + " where idSESSION=" + cell + "";    
+                        String sql5 = "UPDATE cantine.SESSION SET PATIENT='" + name + "' WHERE idSESSION=" + Integer.parseInt(cell) + "";    
                         PreparedStatement pst5 = con.prepareStatement(sql5);
                         pst5.executeUpdate(sql5);
 
 
-                        JOptionPane.showMessageDialog(null, "Vous avez à été Inscrit à la Session" + cell + " ... ");
+                        JOptionPane.showMessageDialog(null, "Vous avez à été Inscrit à la Session" + Integer.parseInt(cell) + " ... ");
                         // verify availale places
-
-                    }
+                        }
+                    }}
                     con.close();
                 }
 
@@ -148,7 +146,7 @@ public class Sessionsparent extends javax.swing.JFrame {
                         int g = rs.getInt("NOMBRE_PLACE");
                         int s = g + 1;
                         String sql = "UPDATE cantine.SESSION SET NOMBRE_PLACE=" + s + " where idSESSION=" + cell + "";
-                        String sql2 = "DELETE FROM  cantine.SESSION_has_ENFANT WHERE SESSION_idSESSION = "+ cell + "";
+                        String sql2 = "DELETE FROM cantine.SESSION_has_ENFANT WHERE SESSION_idSESSION = "+ cell + "";
                         PreparedStatement pst2 = con.prepareStatement(sql2);
                         PreparedStatement pst = con.prepareStatement(sql);
                         pst.execute(sql);
