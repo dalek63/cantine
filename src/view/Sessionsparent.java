@@ -67,25 +67,10 @@ public class Sessionsparent extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 102, 153));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { new Integer(1), "date 1", "heure1", "entree1 repas1 dessert1",
-                                "entreeveg1 repasveg1 dessertveg1", "entreeveg1 repasveg1 dessertveg1",
-                                new Integer(30) },
-                        { new Integer(2), "date 2 ", "heure2", "entree2 repas2 dessert2",
-                                "entreeveg2 repasveg2 dessertveg2", "entreeveg1 repasveg1 dessertveg1",
-                                new Integer(30) },
-                        { new Integer(3), "date 3", "heure3", "entree3 repas3 dessert3",
-                                "entreeveg3 repasveg3 dessertveg3", "entreeveg1 repasveg1 dessertveg1",
-                                new Integer(30) },
-                        { new Integer(4), "date 4 ", "heure4", "entree4 repas4 dessert4",
-                                "entreeveg4 repasveg4 dessertveg4", "entreeveg1 repasveg1 dessertveg1",
-                                new Integer(30) },
-                        { new Integer(5), "date 5 ", "heure5", "entree5 repas5 dessert5",
-                                "entreeveg5 repasveg5 dessertveg5", "entreeveg1 repasveg1 dessertveg1",
-                                new Integer(30) }
+                new Object[][] {                   
                 },
                 new String[] {
-                        "Id Session", "Date", "Heure", "Entree", "Repas", "Dessert", "Nb places"
+                        "Id Session", "Date", "Heure", "Patient", "Nb places"
                 }) {
             Class[] types = new Class[] {
                     java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class,
@@ -114,13 +99,27 @@ public class Sessionsparent extends javax.swing.JFrame {
                         int g = rs.getInt("NOMBRE_PLACE");
                         int s = g - 1;
                         String sql = "UPDATE cantine.SESSION SET NOMBRE_PLACE=" + s + " where idSESSION=" + cell + "";
-                        String sql2 = "INSERT INTO  cantine.SESSION_has_ENFANT(ENFANT_idENFANT,SESSION_idSESSION) VALUES("
+                        String sql2 = "INSERT INTO  cantine.SESSION_has_PATIENT(PATIENT_idPATIENT,SESSION_idSESSION) VALUES("
                                 + a + "," + cell + ")";
-                        PreparedStatement pst2 = con.prepareStatement(sql2);
+                        
+                         PreparedStatement pst2 = con.prepareStatement(sql2);
                         PreparedStatement pst = con.prepareStatement(sql);
                         pst.execute(sql);
                         pst2.execute(sql2);
-                        JOptionPane.showMessageDialog(null, "Votre enfant à été Inscrit à la Session" + cell + " ... ");
+
+                        
+                        String sql4 = "SELECT LAST_NAME FROM PATIENT WHERE LOGIN=" +a+ "";
+                        PreparedStatement pst4 = con.prepareStatement(sql4);
+                        ResultSet rs2 = pst4.executeQuery(sql4);
+                        String name = rs2.getString("LAST_NAME");
+                        String sql5 = "UPDATE cantine.SESSION SET PATIENT=" + name + " where idSESSION=" + cell + "";    
+                        PreparedStatement pst5 = con.prepareStatement(sql5);
+                        pst5.executeUpdate(sql5);
+
+
+                        JOptionPane.showMessageDialog(null, "Vous avez à été Inscrit à la Session" + cell + " ... ");
+                        // verify availale places
+
                     }
                     con.close();
                 }
@@ -132,7 +131,7 @@ public class Sessionsparent extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("ID ENFANT");
+        jLabel1.setText("Entrez votre identifiant");
         jButton3.setText("Annuler");
 
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +274,7 @@ public class Sessionsparent extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(config.url, config.user, config.password);
-            String sql = "SELECT * FROM cantine.SESSION";
+            String sql = "SELECT * FROM cantine.SESSION WHERE NOMBRE_PLACE >= 1";
             // String sql3 = "SELECT * FROM cantineV2.SESSION where idSESSION =? ";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
@@ -284,9 +283,9 @@ public class Sessionsparent extends javax.swing.JFrame {
             ResultSet rs2 = pst2.executeQuery();
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
             tm.setRowCount(0);
-            while (rs.next() & rs2.next()) {
+            while (rs.next()) {
                 Object o[] = { rs.getInt("idSESSION"), rs.getString("JOUR_RESERVATION"), rs.getString("HEURE"),
-                        rs2.getString("ENTREE"), rs2.getString("REPAS"), rs2.getString("DESSERT"),
+                        rs.getString("PATIENT"),
                         rs.getInt("NOMBRE_PLACE") };
                 tm.addRow(o);
             }

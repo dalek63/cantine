@@ -42,8 +42,8 @@ boolean y = false;;
         try{
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(config.url, config.user, config.password);
-            String sql = "Select * from ADMINISTRATEUR where LOGIN=? and  MOT_PASSE =?";
-            String sql2 ="Select * from PATIENT where LOGIN=? and  MOT_PASSE =?"; 
+            String sql = "Select * from administrateur where LOGIN=? and  MOT_PASSE =?";
+            String sql2 ="Select * from patient where LOGIN=? and  MOT_PASSE =?"; 
             PreparedStatement pst = con.prepareStatement(sql);
             PreparedStatement pst2 = con.prepareStatement(sql2);
             login.Id = jTextFieldx.getText();
@@ -112,7 +112,7 @@ boolean y = false;;
                 p.main();
 
                 
-                
+            }
             
             
              if (rs2.next()){
@@ -124,7 +124,7 @@ boolean y = false;;
                 parentinterface p1 = new parentinterface();               
                 p1.main();
                 
-            }
+            
              
                 if(x == false && y == false  ){
                 JOptionPane.showMessageDialog(null, "Id ou Mot de Passe Incorrecte");
@@ -134,12 +134,13 @@ boolean y = false;;
              
         
             con.close();
-        }
+        
         
     
 
         
-    }
+                }
+        }
     catch(Exception ez){
                 JOptionPane.showMessageDialog(null, ez);
 
