@@ -17,8 +17,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
-
-
 public class ConSuppEnfant implements ActionListener {
 
     JTextField idEnfant;
