@@ -276,9 +276,6 @@ public class Sessionsparent extends javax.swing.JFrame {
             // String sql3 = "SELECT * FROM cantineV2.SESSION where idSESSION =? ";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            String sql2 = "SELECT * FROM cantine.MENU";
-            PreparedStatement pst2 = con.prepareStatement(sql2);
-            ResultSet rs2 = pst2.executeQuery();
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
             tm.setRowCount(0);
             while (rs.next()) {

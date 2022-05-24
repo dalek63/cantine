@@ -5,17 +5,13 @@
 package view;
 
 import controller.ConSession;
-import controller.afficherMenu;
 
 /**
  *
  * @author 33781
  */
 public class Ajouteradmin extends javax.swing.JFrame {
-    afficherMenu af = new afficherMenu();
-    /**
-     * Creates new form Ajouteradmin
-     */
+
     public Ajouteradmin() {
         initComponents();
     }
@@ -71,12 +67,7 @@ public class Ajouteradmin extends javax.swing.JFrame {
             }
         });
 
-        jList1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = af.Menu();
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
+        
         //jScrollPane1.setViewportView(jList1);
 
         //jLabel5.setText("MENU NORMAL");

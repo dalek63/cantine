@@ -121,16 +121,8 @@ public class admininterface extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("ADMINISTRATION SESSIONS");
 
-        jButton3.setText("Liste enfant");
 
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    dispose();
-                    listeEnfants l = new listeEnfants();
-                    l.main();
-                
-            }
-        });
+     
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
