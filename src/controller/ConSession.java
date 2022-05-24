@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
-import model.Administrateur;
+
 
 public class ConSession implements ActionListener {
 
