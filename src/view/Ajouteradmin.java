@@ -37,9 +37,9 @@ public class Ajouteradmin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        //jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jTextField3 = new javax.swing.JTextField();
+        //jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
@@ -57,10 +57,10 @@ public class Ajouteradmin extends javax.swing.JFrame {
 
         jLabel2.setText("HEURE");
 
-        jLabel4.setText("MENU VEG");
+        jLabel4.setText("PATIENT");
 
         jButton1.setText("AJOUTER");
-        jButton1.addActionListener(new ConSession(jTextField1, jTextField2, jTextField3, jTextField4));
+        jButton1.addActionListener(new ConSession(jTextField1, jTextField2,jTextField4));
 
         jButton2.setText("RETOUR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -77,9 +77,9 @@ public class Ajouteradmin extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        //jScrollPane1.setViewportView(jList1);
 
-        jLabel5.setText("MENU NORMAL");
+        //jLabel5.setText("MENU NORMAL");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,13 +103,13 @@ public class Ajouteradmin extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                                //.addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
-        );
+                        //.addComponent(jScrollPane1)))
+                //.addContainerGap())
+        ))));
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -126,7 +126,7 @@ public class Ajouteradmin extends javax.swing.JFrame {
                         .addGap(96, 96, 96)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        //.addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
                         .addComponent(jLabel4)
                         .addGap(10, 10, 10)
@@ -138,7 +138,7 @@ public class Ajouteradmin extends javax.swing.JFrame {
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        //.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(105, 105, 105))))
         );
 
@@ -212,10 +212,10 @@ public class Ajouteradmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    //private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    //private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

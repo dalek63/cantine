@@ -43,7 +43,7 @@ boolean y = false;;
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(config.url, config.user, config.password);
             String sql = "Select * from ADMINISTRATEUR where LOGIN=? and  MOT_PASSE =?";
-            String sql2 ="Select * from PARENT where LOGIN=? and  MOT_PASSE =?"; 
+            String sql2 ="Select * from PATIENT where LOGIN=? and  MOT_PASSE =?"; 
             PreparedStatement pst = con.prepareStatement(sql);
             PreparedStatement pst2 = con.prepareStatement(sql2);
             login.Id = jTextFieldx.getText();
@@ -93,7 +93,7 @@ boolean y = false;;
 
                                             }
                                                 catch(Exception ex){
-                                                System.out.println("Erreur d'insertion" + ex);
+                                              //  System.out.println("Erreur d'insertion" + ex);
 
                                             }
 
@@ -103,17 +103,10 @@ boolean y = false;;
 
 
                                         }
-                             //       }
-                        
-                                // String sql = "INSERT INTO Session(JOUR_RESERVATION,HEURE,NOMBRE_PLACE) value (" + String.valueOf(day) +"/05/2022," + String.valueOf(hour) + "H,1)";
-                                   
-                                
-                            
-                    
-
+                       
 
                 }catch (Exception ex){
-                        JOptionPane.showMessageDialog(null, "Erreur de connexion 1");
+                        JOptionPane.showMessageDialog(null, "");
                 }
                 admininterface p = new admininterface();
                 p.main();

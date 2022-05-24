@@ -28,11 +28,10 @@ public class ConSession implements ActionListener {
     JTextField tfmenu;
     JTextField tfmenuv;
 
-    public ConSession(JTextField tfdate, JTextField tfheure, JTextField tfmenu, JTextField tfmenuv) {
+    public ConSession(JTextField tfdate, JTextField tfheure, JTextField tfmenuv) {
 
         this.tfdate = tfdate;
         this.tfheure = tfheure;
-        this.tfmenu = tfmenu;
         this.tfmenuv = tfmenuv;
     }
 
@@ -41,20 +40,19 @@ public class ConSession implements ActionListener {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(config.url, config.user, config.password);
-            String sql = "INSERT INTO cantine.SESSION (JOUR_RESERVATION, HEURE, NOMBRE_PLACE, Menu_normal, Menu_veg) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO cantine.SESSION (JOUR_RESERVATION, HEURE, NOMBRE_PLACE, Patient) VALUES (?, ?, ?, ?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, tfdate.getText());
             pst.setString(2, tfheure.getText());
-            pst.setInt(3, 30);
-            pst.setInt(4, Integer.parseInt(tfmenu.getText()));
-            pst.setInt(5, Integer.parseInt(tfmenuv.getText()));
+            pst.setInt(3, 1);
+            pst.setString(4, tfmenuv.getText());
+            
             pst.executeUpdate();
 
             
             JOptionPane.showMessageDialog(null, "Session ajouté");
             tfdate.setText("");
             tfheure.setText("");
-            tfmenu.setText("");
             tfmenuv.setText("");
             con.close();
           

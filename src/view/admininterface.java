@@ -70,7 +70,7 @@ public class admininterface extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Id Session","Date", "Heure",  "Menu Normal","Menu Veg","Nombre de places"
+                "Id Session","Date", "Heure",  "Patient","Nombre de places"
             }
         ));
         jTable1.setRowHeight(50);
@@ -86,7 +86,7 @@ public class admininterface extends javax.swing.JFrame {
                     int row = jTable1.getSelectedRow();
                     String cell = jTable1.getModel().getValueAt(row, 0).toString();
                     String sql2 ="DELETE FROM cantine.SESSION WHERE idSESSION = "+cell; 
-                    String sql ="DELETE FROM cantine.SESSION_has_ENFANT WHERE SESSION_idSESSION = "+cell; 
+                    String sql ="DELETE FROM cantine.SESSION_has_PATIENT WHERE SESSION_idSESSION = "+cell; 
                     PreparedStatement pst2 = con.prepareStatement(sql2);
                     PreparedStatement pst = con.prepareStatement(sql);
                 //  pst2.setString(1,cell); 
@@ -227,7 +227,7 @@ public class admininterface extends javax.swing.JFrame {
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
             tm.setRowCount(0);
             while(rs.next() ){
-                Object o[] = { rs.getInt("idSESSION"),rs.getString("JOUR_RESERVATION"),rs.getString("HEURE"),rs.getInt("Menu_normal"),rs.getInt("Menu_veg"),rs.getInt("NOMBRE_PLACE") };
+                Object o[] = { rs.getInt("idSESSION"),rs.getString("JOUR_RESERVATION"),rs.getString("HEURE"),rs.getString("Patient"),rs.getInt("NOMBRE_PLACE") };
                 tm.addRow(o);
             }
             con.close();
