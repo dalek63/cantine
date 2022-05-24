@@ -57,21 +57,79 @@ boolean y = false;;
                  x = true;
                  //y = false;
                JOptionPane.showMessageDialog(null, "Connection Admin Réussie");
-                login.fermer();
+               // verify if date already exist in db
+               try {
+                   Connection con3 = DriverManager.getConnection(config.url, config.user, config.password);
+                   String sql4  = "SELECT * FROM SESSION WHERE JOUR_RESERVATION = ?";
+                    PreparedStatement pst3 = con3.prepareStatement(sql4);
+                    
+                    ResultSet rs3 = pst3.executeQuery();
+
+                        JOptionPane.showMessageDialog(null, "Vous avez déjà une réservation pour ce jour");
+                  
+                        Connection con2 = DriverManager.getConnection(config.url, config.user, config.password);
+                        String sql3 = "insert into Session(JOUR_RESERVATION,HEURE,NOMBRE_PLACE) value (?,?,?)";
+                            PreparedStatement pst1 = con.prepareStatement(sql3);
+                        
+                            login.fermer();
+                            for (int i = 0 ; i< 5; i++) {
+                                for (int j = 0; j< 9; j++) { 
+                                    int day = 23 + i;
+                                    int hour = 9 + j;
+                                    int available = 1;
+/*
+                                        
+                                        pst3.setString(1,String.valueOf(day) +"/05/2022");
+                                        if(rs3.getString("JOUR_RESERVATION")!=String.valueOf(day) +"/05/2022"){
+           */                             
+                                        
+                                         try{
+
+                                            pst1.setString(1, String.valueOf(day) +"/05/2022");
+                                            pst1.setString(2, String.valueOf(hour) + "H");
+                                            pst1.setInt(3, available);
+                                            pst1.executeUpdate();
+                                            System.out.println("Insertion réussie");
+
+                                            }
+                                                catch(Exception ex){
+                                                System.out.println("Erreur d'insertion" + ex);
+
+                                            }
+
+                                        }
+
+
+
+
+                                        }
+                             //       }
+                        
+                                // String sql = "INSERT INTO Session(JOUR_RESERVATION,HEURE,NOMBRE_PLACE) value (" + String.valueOf(day) +"/05/2022," + String.valueOf(hour) + "H,1)";
+                                   
+                                
+                            
+                    
+
+
+                }catch (Exception ex){
+                        JOptionPane.showMessageDialog(null, "Erreur de connexion 1");
+                }
                 admininterface p = new admininterface();
                 p.main();
+
                 
                 
-            }
+            
             
              if (rs2.next()){
                 x = true;
                 // y = false;
               JOptionPane.showMessageDialog(null, login.Id);
-               JOptionPane.showMessageDialog(null, "Connection Réussie");
+              JOptionPane.showMessageDialog(null, "Connection Réussie");
                 login.fermer();
-                parentinterface p = new parentinterface();
-                p.main();
+                parentinterface p1 = new parentinterface();               
+                p1.main();
                 
             }
              
@@ -84,20 +142,16 @@ boolean y = false;;
         
             con.close();
         }
-        catch(Exception ez){
-            JOptionPane.showMessageDialog(null, ez);
-
-        }
-    
+        
     
 
         
     }
+    catch(Exception ez){
+                JOptionPane.showMessageDialog(null, ez);
 
-
-
-
-	
-
+            }
+        
     
+    }
 }
