@@ -40,7 +40,7 @@ public class ConSession implements ActionListener {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(config.url, config.user, config.password);
-            String sql = "INSERT INTO cantine.SESSION (JOUR_RESERVATION, HEURE, NOMBRE_PLACE, Patient) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO doctorwho.SESSION (JOUR_RESERVATION, HEURE, NOMBRE_PLACE, Patient) VALUES (?, ?, ?, ?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, tfdate.getText());
             pst.setString(2, tfheure.getText());

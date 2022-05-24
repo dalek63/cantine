@@ -174,7 +174,7 @@ public class login extends javax.swing.JFrame {
             public void run() {
                 
                 p.setVisible(true);
-                p.setTitle("Connection à la gestion de cantine");
+                p.setTitle("Connection à la gestion de doctorwho");
                 p.setResizable(false);
             }
         });

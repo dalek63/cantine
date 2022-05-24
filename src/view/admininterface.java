@@ -85,8 +85,8 @@ public class admininterface extends javax.swing.JFrame {
                     Connection con = DriverManager.getConnection(config.url, config.user, config.password);
                     int row = jTable1.getSelectedRow();
                     String cell = jTable1.getModel().getValueAt(row, 0).toString();
-                    String sql2 ="DELETE FROM cantine.SESSION WHERE idSESSION = "+cell; 
-                    String sql ="DELETE FROM cantine.SESSION_has_PATIENT WHERE SESSION_idSESSION = "+cell; 
+                    String sql2 ="DELETE FROM doctorwho.SESSION WHERE idSESSION = "+cell; 
+                    String sql ="DELETE FROM doctorwho.SESSION_has_PATIENT WHERE SESSION_idSESSION = "+cell; 
                     PreparedStatement pst2 = con.prepareStatement(sql2);
                     PreparedStatement pst = con.prepareStatement(sql);
                 //  pst2.setString(1,cell); 

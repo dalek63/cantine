@@ -30,7 +30,7 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "name": "Projet Cantine",
+            "name": "Projet doctorwho",
             "username": "admin2",
             "database": "dbcantine",
             "password": "admin"

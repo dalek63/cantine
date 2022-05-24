@@ -98,7 +98,7 @@ public class Sessionsparent extends javax.swing.JFrame {
                     if (rs.next()) {
                         int g = rs.getInt("NOMBRE_PLACE");                        int s;
                         s = g - 1;
-                        String sql = "UPDATE cantine.SESSION SET NOMBRE_PLACE=" + s + " where idSESSION=" + Integer.parseInt(cell) + "";
+                        String sql = "UPDATE doctorwho.SESSION SET NOMBRE_PLACE=" + s + " where idSESSION=" + Integer.parseInt(cell) + "";
                         
                         PreparedStatement pst = con.prepareStatement(sql);
                         pst.execute(sql);
@@ -110,7 +110,7 @@ public class Sessionsparent extends javax.swing.JFrame {
                         ResultSet rs2 = pst4.executeQuery(sql4);
                         if (rs2.next()) {
                         String name = rs2.getString("LAST_NAME");
-                        String sql5 = "UPDATE cantine.SESSION SET PATIENT='" + name + "' WHERE idSESSION=" + Integer.parseInt(cell) + "";    
+                        String sql5 = "UPDATE doctorwho.SESSION SET PATIENT='" + name + "' WHERE idSESSION=" + Integer.parseInt(cell) + "";    
                         PreparedStatement pst5 = con.prepareStatement(sql5);
                         pst5.executeUpdate(sql5);
 
@@ -145,8 +145,8 @@ public class Sessionsparent extends javax.swing.JFrame {
                     if (rs.next()) {
                         int g = rs.getInt("NOMBRE_PLACE");
                         int s = g + 1;
-                        String sql = "UPDATE cantine.SESSION SET NOMBRE_PLACE=" + s + " where idSESSION=" + cell + "";
-                        String sql2 = "DELETE FROM cantine.SESSION_has_ENFANT WHERE SESSION_idSESSION = "+ cell + "";
+                        String sql = "UPDATE doctorwho.SESSION SET NOMBRE_PLACE=" + s + " where idSESSION=" + cell + "";
+                        String sql2 = "DELETE FROM doctorwho.SESSION_has_ENFANT WHERE SESSION_idSESSION = "+ cell + "";
                         PreparedStatement pst2 = con.prepareStatement(sql2);
                         PreparedStatement pst = con.prepareStatement(sql);
                         pst.execute(sql);
@@ -272,7 +272,7 @@ public class Sessionsparent extends javax.swing.JFrame {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(config.url, config.user, config.password);
-            String sql = "SELECT * FROM cantine.SESSION WHERE NOMBRE_PLACE >= 1";
+            String sql = "SELECT * FROM doctorwho.SESSION WHERE NOMBRE_PLACE >= 1";
             // String sql3 = "SELECT * FROM cantineV2.SESSION where idSESSION =? ";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();

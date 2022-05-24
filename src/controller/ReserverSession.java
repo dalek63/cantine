@@ -38,9 +38,9 @@ JTextField j2;
         ResultSet rs = pst3.executeQuery(sql3);
         int g = rs.getInt("NOMBRE_PLACE");
         int s = g -1;
-        //String sql = "UPDATE cantine.SESSION SET NOMBRE_PLACE=NOMBRE_PLACE - 1 where idSESSION=?";
+        //String sql = "UPDATE doctorwho.SESSION SET NOMBRE_PLACE=NOMBRE_PLACE - 1 where idSESSION=?";
         
-        String sql2 ="INSERT INTO  cantine.SESSION_has_ENFANT(ENFANT_idENFANT,SESSION_idSESSION) VALUES("+a+","+cell+")"; 
+        String sql2 ="INSERT INTO  doctorwho.SESSION_has_ENFANT(ENFANT_idENFANT,SESSION_idSESSION) VALUES("+a+","+cell+")"; 
         PreparedStatement pst2 = con.prepareStatement(sql2);
         //PreparedStatement pst = con.prepareStatement(sql);
         //pst.setString(1, cell);
